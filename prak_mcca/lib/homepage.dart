@@ -1,7 +1,11 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:prak_mcca/login.dart';
 import 'post.dart';
 import 'postList.dart';
 import 'textInput.dart';
+
 
 class MyHomePage extends StatefulWidget {
   final String name;
@@ -14,12 +18,14 @@ class MyHomePage extends StatefulWidget {
 // ignore: camel_case_types
 class _MyHomePageState extends State<MyHomePage> {
   List<Post> post = [];
-
+  
   void newPost(String text) {
     this.setState(() {
       post.add(new Post(text, widget.name));
     });
+  
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(children: <Widget>[
           Expanded(child: PostList(this.post)),
           TextInputWidget(this.newPost)
-        ]));
+        ],
+      ),
+      
+    );
   }
 }
+
+
