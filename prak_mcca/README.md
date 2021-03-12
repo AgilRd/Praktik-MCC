@@ -1,6 +1,6 @@
 # prak_mcca
 
-A new Flutter project.
+A new Flutter project. for complete moblie cloud computing class
 
 ## Getting Started
 
