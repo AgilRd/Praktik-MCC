@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:prak_mcca/homepage/post.dart';
 import 'package:prak_mcca/homepage/postList.dart';
 import 'package:prak_mcca/homepage/textInput.dart';
-import 'package:prak_mcca/login/login2.dart';
 class MyHomePage extends StatefulWidget {
   final String name;
   MyHomePage(this.name);
