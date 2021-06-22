@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prak_mcca/login/login.dart';
+import 'package:prak_mcca/auth/auth.dart';
 
 import 'login/login2.dart';
 //import 'splasScreen.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: LoginPage2(),
+      home: LoginPage(),
     );
   }
 }

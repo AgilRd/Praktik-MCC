@@ -9,7 +9,7 @@ class LoginPage2 extends StatefulWidget {
 }
 
 class _LoginPage2State extends State<LoginPage2> {
-  FirebaseUser user;
+  User user;
   void click() {
     signInWithGoogle().then((user) => {
           Navigator.push(
