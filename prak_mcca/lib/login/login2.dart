@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prak_mcca/homepage/homepage.dart';
-import 'package:prak_mcca/auth/auth.dart';
 
 class LoginPage2 extends StatefulWidget {
   @override
@@ -83,7 +82,7 @@ class _LoginPage2State extends State<LoginPage2> {
               children: <Widget>[
                 TextField(
                   decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Username',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold,
@@ -115,12 +114,7 @@ class _LoginPage2State extends State<LoginPage2> {
               color: Colors.green,
               elevation: 10.0,
               child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MyHomePage(user.displayName)));
-                },
+                onTap: () {},
                 child: Center(
                   child: Text(
                     'LOGIN',
@@ -138,7 +132,7 @@ class _LoginPage2State extends State<LoginPage2> {
           ),
           Center(
             child: Container(
-              height: 40.0,
+              height: 40,
               child: googleloginButton(),
             ),
           ),
@@ -170,4 +164,8 @@ class _LoginPage2State extends State<LoginPage2> {
       ),
     );
   }
+
+  void signOutGoogle() {}
+
+  signInWithGoogle() {}
 }

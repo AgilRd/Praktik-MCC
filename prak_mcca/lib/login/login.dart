@@ -27,7 +27,7 @@ class _BodyState extends State<Body> {
   User user;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     signOutGoogle();
   }
@@ -35,10 +35,12 @@ class _BodyState extends State<Body> {
   void click() {
     //this.name = controller.text;
     signInWithGoogle().then((user) => {
-      this.user = user,
-      Navigator.push(context,
-        MaterialPageRoute(builder: (context) => MyHomePage(user.displayName)))
-    });
+          this.user = user,
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MyHomePage(user.displayName)))
+        });
   }
 
   Widget googleLoginButton(){
@@ -50,7 +52,7 @@ class _BodyState extends State<Body> {
       child: Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,    
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image(image: AssetImage('assets/google_logo.png'), height: 35),
           Padding(padding: EdgeInsets.only(left: 10), child: Text('Sign in with Google', style: TextStyle(color: Colors.grey, fontSize: 25)))
@@ -62,8 +64,9 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Align(
-        alignment: Alignment.center,
-        child: googleLoginButton(),
+      alignment: Alignment.center,
+      child: googleLoginButton(),
     );
   }
 }
+
