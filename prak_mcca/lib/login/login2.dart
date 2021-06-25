@@ -11,13 +11,6 @@ class LoginPage2 extends StatefulWidget {
 class _LoginPage2State extends State<LoginPage2> {
   FirebaseUser user;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    signOutGoogle();
-  }
-
   void click() {
     signInWithGoogle().then((user) => {
           Navigator.push(
@@ -40,7 +33,7 @@ class _LoginPage2State extends State<LoginPage2> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Image(image: AssetImage('assets/google_logo.png'), height: 35),
+              Image(image: AssetImage('images/google_logo.png'), height: 35),
               Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Text(
