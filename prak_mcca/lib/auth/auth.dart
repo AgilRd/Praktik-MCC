@@ -13,18 +13,19 @@ Future<User> signInWithGoogle() async {
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken);
 
-  final UserCredential authResult = await _auth.signInWithCredential(credential);
+  final UserCredential authResult =
+      await _auth.signInWithCredential(credential);
   final User user = authResult.user;
 
   assert(!user.isAnonymous);
   assert(await user.getIdToken() != null);
 
-  final User currentUser =  _auth.currentUser;
+  final User currentUser = _auth.currentUser;
   assert(currentUser.uid == user.uid);
 
   return user;
 }
 
 void signOutGoogle() async {
-  googleSignin.signOut();
+  await googleSignin.signOut();
 }

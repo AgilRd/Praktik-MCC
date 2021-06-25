@@ -10,6 +10,13 @@ class LoginPage2 extends StatefulWidget {
 
 class _LoginPage2State extends State<LoginPage2> {
   User user;
+
+  @override
+  void initState() {
+    super.initState();
+    signOutGoogle();
+  }
+
   void click() {
     signInWithGoogle().then((user) => {
           Navigator.push(
@@ -22,7 +29,7 @@ class _LoginPage2State extends State<LoginPage2> {
   Widget googleloginButton() {
     // ignore: deprecated_member_use
     return OutlineButton(
-        onPressed: this.click,
+        onPressed: click,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
         splashColor: Colors.greenAccent,
         borderSide: BorderSide(color: Colors.greenAccent),

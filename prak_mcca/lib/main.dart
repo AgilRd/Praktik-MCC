@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prak_mcca/login/login.dart';
-import 'package:prak_mcca/auth/auth.dart';
 
 import 'login/login2.dart';
 //import 'splasScreen.dart';
@@ -15,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ANONIMOUS?',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: LoginPage(),
+      home: LoginPage2(),
     );
   }
 }
