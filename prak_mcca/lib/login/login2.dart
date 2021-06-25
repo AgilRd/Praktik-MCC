@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:prak_mcca/homepage/homepage.dart';
+import 'package:prak_mcca/auth/auth.dart';
 
 class LoginPage2 extends StatefulWidget {
   @override
@@ -8,10 +9,11 @@ class LoginPage2 extends StatefulWidget {
 }
 
 class _LoginPage2State extends State<LoginPage2> {
-  User user;
+  FirebaseUser user;
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
     signOutGoogle();
   }
@@ -164,8 +166,4 @@ class _LoginPage2State extends State<LoginPage2> {
       ),
     );
   }
-
-  void signOutGoogle() {}
-
-  signInWithGoogle() {}
 }
