@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:prak_mcca/database/database.dart';
 import 'package:prak_mcca/homepage/post.dart';
 import 'package:prak_mcca/homepage/postList.dart';
 import 'package:prak_mcca/homepage/textInput.dart';
+
 class MyHomePage extends StatefulWidget {
-  final String name;
-  MyHomePage(this.name);
+  final FirebaseUser user;
+  MyHomePage(this.user);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -12,11 +15,14 @@ class MyHomePage extends StatefulWidget {
 
 // ignore: camel_case_types
 class _MyHomePageState extends State<MyHomePage> {
-  List<Post> post = [];
+  List<Post> posts = [];
 
   void newPost(String text) {
+    var post = new Post(text, widget.user.displayName);
+    savePost(post);
+    post.setID(savePost(post));
     this.setState(() {
-      post.add(new Post(text, widget.name));
+      posts.add(post);
     });
   }
 
@@ -30,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          Expanded(child: PostList(this.post)),
+          Expanded(child: PostList(this.posts, widget.user)),
           TextInputWidget(this.newPost)
         ],
       ),

@@ -1,0 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:prak_mcca/homepage/post.dart';
+
+
+final databaseReference = FirebaseDatabase.instance.reference();
+
+DatabaseReference savePost(Post post) {
+  var id = databaseReference.child('post/').push();
+  id.set(post.toJson());
+  return id;
+}

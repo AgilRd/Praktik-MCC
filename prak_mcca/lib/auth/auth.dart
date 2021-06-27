@@ -23,7 +23,18 @@ Future<FirebaseUser> signInWithGoogle() async {
   assert(currentUser.uid == user.uid);
 
   return user;
-}
+} //sign in with google
+
+Future signInAnon() async {
+  try {
+    final AuthResult authResult = await _auth.signInAnonymously();
+    final FirebaseUser user = authResult.user;
+    return user;
+  } catch (e) {
+    print(e.toString());
+    return null;
+  }
+} //sign in anonymously
 
 void signOutGoogle() async {
   await googlesignin.signOut();

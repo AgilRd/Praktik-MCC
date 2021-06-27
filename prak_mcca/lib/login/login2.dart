@@ -11,13 +11,54 @@ class LoginPage2 extends StatefulWidget {
 class _LoginPage2State extends State<LoginPage2> {
   FirebaseUser user;
 
+  @override
+  void initState() {
+    super.initState();
+    signOutGoogle();
+  }
+
   void click() {
     signInWithGoogle().then((user) => {
           Navigator.push(
               context,
               MaterialPageRoute(
+                  builder: (context) => MyHomePage(user)))
+        });
+  }
+
+  void anon() {
+    signInAnon().then((user) => {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
                   builder: (context) => MyHomePage(user.displayName)))
         });
+  }
+
+  Widget anonButton() {
+    // ignore: deprecated_member_use
+    return OutlineButton(
+        onPressed: anon,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
+        splashColor: Colors.black,
+        borderSide: BorderSide(color: Colors.black),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Image(image: AssetImage('images/anonymous.png'), height: 35),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  'Sign In Anonymously',
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 
   Widget googleloginButton() {
@@ -129,6 +170,15 @@ class _LoginPage2State extends State<LoginPage2> {
             child: Container(
               height: 40,
               child: googleloginButton(),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Center(
+            child: Container(
+              height: 40,
+              child: anonButton(),
             ),
           ),
           SizedBox(
