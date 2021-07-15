@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:prak_mcca/homepage/bot_navigation.dart';
 import 'package:prak_mcca/homepage/homepage.dart';
 import 'package:prak_mcca/auth/auth.dart';
+import 'package:prak_mcca/login/Register_View.dart';
 
 class LoginPage2 extends StatefulWidget {
   @override
@@ -10,28 +12,37 @@ class LoginPage2 extends StatefulWidget {
 
 class _LoginPage2State extends State<LoginPage2> {
   FirebaseUser user;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<FirebaseUser> _signInWithEmail() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
+            email: _emailController.text, password: _passwordController.text))
+        .user;
+    return user;
+  }
 
   @override
   void initState() {
     super.initState();
-    signOutGoogle();
+    signOut();
   }
 
   void click() {
     signInWithGoogle().then((user) => {
+          this.user = user,
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MyHomePage(user)))
+              context, MaterialPageRoute(builder: (context) => navbar(user)))
         });
   }
 
   void anon() {
     signInAnon().then((user) => {
+          this.user = user,
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MyHomePage(user.displayName)))
+              context, MaterialPageRoute(builder: (context) => MyHomePage(user)))
         });
   }
 
@@ -87,11 +98,10 @@ class _LoginPage2State extends State<LoginPage2> {
         ));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
+  Widget _formLogIn() {
+    return Form(
+      key: _formKey,
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
@@ -116,7 +126,8 @@ class _LoginPage2State extends State<LoginPage2> {
             padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
             child: Column(
               children: <Widget>[
-                TextField(
+                TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                       labelText: 'Username',
                       labelStyle: TextStyle(
@@ -125,9 +136,16 @@ class _LoginPage2State extends State<LoginPage2> {
                           color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.green))),
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return "Please enter your email";
+                    }
+                    return null;
+                  },
                 ),
                 SizedBox(height: 10.0),
-                TextField(
+                TextFormField(
+                  controller: _passwordController,
                   decoration: InputDecoration(
                       labelText: 'Password',
                       labelStyle: TextStyle(
@@ -137,6 +155,12 @@ class _LoginPage2State extends State<LoginPage2> {
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.green))),
                   obscureText: true,
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return "Please enter your password";
+                    }
+                    return null;
+                  },
                 )
               ],
             ),
@@ -150,7 +174,9 @@ class _LoginPage2State extends State<LoginPage2> {
               color: Colors.green,
               elevation: 10.0,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  _signInWithEmail();
+                },
                 child: Center(
                   child: Text(
                     'LOGIN',
@@ -193,7 +219,10 @@ class _LoginPage2State extends State<LoginPage2> {
               ),
               SizedBox(width: 5.0),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()));
+                },
                 child: Text(
                   'Daftar',
                   style: TextStyle(
@@ -207,6 +236,14 @@ class _LoginPage2State extends State<LoginPage2> {
           ),
         ],
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: _formLogIn(),
     );
   }
 }

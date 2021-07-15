@@ -18,7 +18,7 @@ Future<List<Post>> getAllPosts() async {
   List<Post> posts = [];
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, value) {
-      Post post = createPost(value);
+      Post post = Post.createPost(value);
       post.setID(databaseReference.child('post/' + key));
       posts.add(post);
     });

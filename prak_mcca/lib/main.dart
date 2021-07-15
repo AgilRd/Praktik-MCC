@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ANONIMOUS?',
       theme: ThemeData(
-        primarySwatch: Colors.yellow,
+        primarySwatch: Colors.red,
       ),
       home: SplashScreen(),
     );

@@ -40,20 +40,27 @@ class _MyHomePageState extends State<MyHomePage> {
     updatePost();
   }
 
+  getuser() {
+    if (widget.user.isAnonymous == true) {
+      return "Anonymous";
+    } else {
+      return widget.user;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.yellow,
-        title: Text("Hello WOrld!"),
-        shadowColor: Colors.greenAccent,
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(child: PostList(this.posts, widget.user)),
-          TextInputWidget(this.newPost)
-        ],
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.redAccent,
+          title: Text("Homepage"),
+          shadowColor: Colors.red,
+        ),
+        body: Column(
+          children: <Widget>[
+            Expanded(child: PostList(this.posts, widget.user)),
+            TextInputWidget(this.newPost)
+          ],
+        ));
   }
 }

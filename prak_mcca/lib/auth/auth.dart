@@ -25,7 +25,7 @@ Future<FirebaseUser> signInWithGoogle() async {
   return user;
 } //sign in with google
 
-Future signInAnon() async {
+Future<FirebaseUser> signInAnon() async {
   try {
     final AuthResult authResult = await _auth.signInAnonymously();
     final FirebaseUser user = authResult.user;
@@ -36,6 +36,12 @@ Future signInAnon() async {
   }
 } //sign in anonymously
 
-void signOutGoogle() async {
-  await googlesignin.signOut();
+
+//GET User Data
+Future getCurrnetUser() async {
+  return await _auth.currentUser();
+}
+
+ signOut() async {
+  return await _auth.signOut();
 }

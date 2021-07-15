@@ -35,7 +35,7 @@ class Post {
     };
   }
 
-  Post createPost(record) {
+  static Post createPost(record) {
     Map<String, dynamic> attributes = {
       'author': '',
       'userLiked': [],
